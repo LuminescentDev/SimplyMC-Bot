@@ -27,13 +27,13 @@ module.exports = {
 		const underline = args.getBoolean("underline");
 		const strikethrough = args.getBoolean("strikethrough");
 		const formatting = compress([bold, italic, underline, strikethrough]);
-		const gradient = await fetch(`http://localhost:8081/gradient?text=${encodeURIComponent(text)}&colors=${encodeURIComponent(colors.join(","))}&format=${encodeURIComponent(format)}&formatChar=${encodeURIComponent(formatChar)}&formatting=${formatting}`)
+		const gradient = await fetch(`https://api.simplymc.art/gradient?text=${encodeURIComponent(text)}&colors=${encodeURIComponent(colors.join(","))}&format=${encodeURIComponent(format)}&formatChar=${encodeURIComponent(formatChar)}&formatting=${formatting}`)
 		.then(res => res.json())
 		const previewbuffer = Buffer.from(gradient.Preview.split(",")[1], 'base64');
 		const preview = new Discord.AttachmentBuilder().setName("preview.png").setFile(previewbuffer);
 		interaction.editReply({ content: gradient.Output, files: [preview] });
 	},
-}; 
+};
 
 // Takes an array of boolean values and turns them into a number
 function compress(values) {
