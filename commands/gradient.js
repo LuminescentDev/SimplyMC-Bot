@@ -10,7 +10,10 @@ module.exports = {
     async autoComplete(client, interaction) {
         const focusedValue = interaction.options.getFocused();
         const choices = [
-            { name: '&#rrggbb', value: '&#$1$2$3$4$5$6$f$c' }
+            { name: '&#rrggbb', value: '&#$1$2$3$4$5$6$f$c' },
+			{ name: "<#rrggbb>", value: "<#$1$2$3$4$5$6>$f$c" },
+			{ name: "&x&r&r&g&g&b&b", value: "&x&$1&$2&$3&$4&$5&$6$f$c" },
+			{ name: "§x§r§r§g§g§b§b", value: "§x§$1§$2§$3§$4§$5§$6$f$c" },
         ];
         const filtered = choices.filter(choice => choice.name.toLowerCase().startsWith(focusedValue.toLowerCase()));
         if (!filtered.length) filtered.push({ name: focusedValue, value: focusedValue });
