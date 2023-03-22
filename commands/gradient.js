@@ -60,14 +60,14 @@ module.exports = {
           strikethrough
         )}`
       ).then((res) => res.json());
-    //   const previewbuffer = Buffer.from(
-    //     gradient.Preview.split(",")[1],
-    //     "base64"
-    //   );
-    //   const preview = new Discord.AttachmentBuilder()
-    //     .setName("preview.png")
-    //     .setFile(previewbuffer);
-      interaction.editReply({ content: gradient.output });
+      const previewbuffer = Buffer.from(
+        gradient.preview.split(",")[1],
+        "base64"
+      );
+      const preview = new Discord.AttachmentBuilder()
+        .setName("preview.png")
+        .setFile(previewbuffer);
+      interaction.editReply({ content: gradient.output, files: [preview] });
     } catch (error) {
       interaction.editReply(
         `An error occurred while executing the command: ${error.message}`
